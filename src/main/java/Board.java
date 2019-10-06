@@ -68,19 +68,23 @@ boardPlayer[i][j]=' ';
 
     public boolean isPossibleToPutShipOnthisPlace(String direction, int positionX, int positionY, int sizeOfship)
     {
-        int indicator=1;
+        int indicatorLeftUP=1;
+        int indicatorRightDown=0;
 
-        if(positionX==0||positionY==0||positionX==9||positionY==9)
-        {indicator=0;}
+        if(positionX==0||positionY==0)
+        {indicatorLeftUP=0;}
+
+        if(positionX==9||positionY==9)
+        {indicatorRightDown=1;}
 
 
         if(direction.equals("horizontal"))
 
         {
-            for(int i=0;i<sizeOfship+1+indicator;i++)
-            {     for(int j=0;j<3;j++)
+            for(int i=0;i<sizeOfship+1+indicatorLeftUP-indicatorRightDown;i++)
+            {     for(int j=0;j<3-indicatorRightDown;j++)
             {
-                if(boardPlayer[positionX-indicator+i][positionY-indicator+j]=='o')
+                if(boardPlayer[positionX-indicatorLeftUP+i][positionY-indicatorLeftUP+j]=='o')
                 {
                 return false;
                 }
@@ -91,10 +95,10 @@ boardPlayer[i][j]=' ';
         }
 
         if(direction.equals("vertical"))
-        {for(int i=0;i<3;i++)
-        {     for(int j=0;j<sizeOfship+1+indicator;j++)
+        {for(int i=0;i<3-indicatorRightDown;i++)
+        {     for(int j=0;j<sizeOfship+1+indicatorLeftUP-indicatorRightDown;j++)
         {
-            if(boardPlayer[positionX-indicator+i][positionY-indicator+j]=='o')
+            if(boardPlayer[positionX-indicatorLeftUP+i][positionY-indicatorLeftUP+j]=='o')
             {
                 return false;
             }
@@ -118,14 +122,15 @@ boardPlayer[i][j]=' ';
 
         System.out.println(board.getBoardPlayer()[9][9]);
         System.out.println(board.getPlayerShips().get(0));
-        board.addShip(3,3,1,"vertical");
-        board.addShip(5,3,1,"vertical");
+
         System.out.println(board.getPlayerShips().get(0));
-        board.addShip(4,4,1,"vertical");
+
         System.out.println(board.getPlayerShips().get(0));
-        board.addShip(7,7,1,"vertical");
-        board.addShip(8,8,1,"vertical");
+
+
         board.addShip(0,0,1,"vertical");
+        board.addShip(7,0,1,"vertical");
+        board.addShip(9,0,1,"vertical");
      //   board.addShip(0,0,1,"vertical");
 //        System.out.println(board.getPlayerShips().get(0));
 //        System.out.println(board.getBoardPlayer()[3][3]);
