@@ -1,6 +1,7 @@
 import org.w3c.dom.ls.LSOutput;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class GameBoard {
 
@@ -31,10 +32,10 @@ public class GameBoard {
 
 
         for (int i = 0; i < 4; i++) {
-            System.out.println(boardComputer.getPlayerShips().get(i));
+
             while (boardComputer.getPlayerShips().get(i) > 0) {
 
-                System.out.println(i);
+
                 boardComputer.addShip(x, y, i + 1, direction);
 
                 x = random.nextInt(10);
@@ -46,6 +47,28 @@ public class GameBoard {
 
 
     }
+
+ public void createUserBoard()
+ {
+
+
+     boardPlayer.boardInit();
+     boardPlayer.addShip(0,0,4,"horizontal");
+     boardPlayer.addShip(5,3,3,"horizontal");
+     boardPlayer.addShip(0,2,3,"horizontal");
+     boardPlayer.addShip(4,2,2,"horizontal");
+     boardPlayer.addShip(7,2,2,"horizontal");
+     boardPlayer.addShip(0,4,2,"horizontal");
+     boardPlayer.addShip(3,4,1,"horizontal");
+     boardPlayer.addShip(5,4,1,"horizontal");
+     boardPlayer.addShip(7,3,1,"horizontal");
+     boardPlayer.addShip(9,9,1,"horizontal");
+
+
+
+
+
+ }
 
 
     private String determineDirectionOfShips(int direction0) {
