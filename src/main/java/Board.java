@@ -42,9 +42,9 @@ public class Board {
     public void addShip(int positionX, int positionY, int sizeOfShip, String direction) {
 
         {
-            if (isShipExists(sizeOfShip) &&
+            if (isShipExists(sizeOfShip) && isEnoughSpaceForShip(direction, positionX, positionY, sizeOfShip)&&
                     isPossibleToPutShipOnthisPlace(direction, positionX, positionY, sizeOfShip)
-                    && isEnoughSpaceForShip(direction, positionX, positionY, sizeOfShip)) {
+                    ) {
                 if (direction.equals("horizontal")) {
                     for (int i = 0; i < sizeOfShip; i++) {
                         boardPlayer[positionX + i][positionY] = 'o';
@@ -96,7 +96,7 @@ return 0;
 
     public boolean isEnoughSpaceForShip(String direction, int positionX, int positionY, int sizeOfship) {
 
-        if (returnVolumeOfPlaceToEndOfBoard(direction, positionX, positionY, sizeOfship) >= sizeOfship) {
+        if (returnVolumeOfPlaceToEndOfBoard(direction, positionX, positionY, sizeOfship) >= 0) {
             return true;
 
         }
@@ -126,9 +126,14 @@ return 0;
             indicatordown = 0;
         }
 
+        if(returnVolumeOfPlaceToEndOfBoard(direction,positionX,positionY,sizeOfship)==0)
+        {
+            indicator=1;
+        }
+
 
         if (direction.equals("horizontal")) {
-            for (int i = 0; i < sizeOfship + indicatorLeft + indicatorRight; i++) {
+            for (int i = 0; i < sizeOfship + indicatorLeft + indicatorRight-indicator; i++) {
                 for (int j = 0; j < 1 + indicatorUp + indicatordown; j++) {
                     if (boardPlayer[positionX - indicatorLeft + i][positionY - indicatorUp + j] == 'o') {
                         return false;
@@ -141,7 +146,7 @@ return 0;
 
         if (direction.equals("vertical")) {
             for (int i = 0; i < 1 + indicatorLeft + indicatorRight; i++) {
-                for (int j = 0; j < sizeOfship + indicatordown + indicatorUp; j++) {
+                for (int j = 0; j < sizeOfship + indicatordown + indicatorUp-indicator; j++) {
                     if (boardPlayer[positionX - indicatorLeft + i][positionY - indicatorUp + j] == 'o') {
                         return false;
                     }
@@ -170,7 +175,7 @@ return 0;
         System.out.println(board.getPlayerShips().get(0));
 
 
-        board.addShip(5, 7, 3, "vertical");
+        board.addShip(0, 7, 3, "vertical");
 
 //        board.addShip(5,5,1,"horizontal");
 
