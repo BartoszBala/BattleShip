@@ -54,12 +54,12 @@ public class GameBoard {
 
      boardPlayer.boardInit();
      boardPlayer.addShip(0,0,4,"horizontal");
-     boardPlayer.addShip(5,3,3,"horizontal");
+     boardPlayer.addShip(5,0,3,"horizontal");
      boardPlayer.addShip(0,2,3,"horizontal");
      boardPlayer.addShip(4,2,2,"horizontal");
      boardPlayer.addShip(7,2,2,"horizontal");
-     boardPlayer.addShip(0,4,2,"horizontal");
-     boardPlayer.addShip(3,4,1,"horizontal");
+     boardPlayer.addShip(0,9,2,"horizontal");
+     boardPlayer.addShip(9,0,1,"horizontal");
      boardPlayer.addShip(5,4,1,"horizontal");
      boardPlayer.addShip(7,3,1,"horizontal");
      boardPlayer.addShip(9,9,1,"horizontal");

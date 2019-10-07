@@ -61,6 +61,48 @@ currentPlayer="user";
     }
 
 
+    public void printBoardUser()
+    {
+
+        System.out.println("*********USER BOARD*************");
+        System.out.println("   1 2 3 4 5 6 7 8 9 10");
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if(j==0)
+                {
+                    System.out.printf("%2d|",(i+1));
+                }
+                System.out.print(gameBoard.getBoardPlayer().getBoardPlayer()[j][i]+"|");
+
+
+            }
+            System.out.println();
+        }
+    }
+
+    public void printBoartComputer()
+
+    {
+
+        System.out.println("*********COMPUTER**********");
+        System.out.println("   1 2 3 4 5 6 7 8 9 10");
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if(j==0)
+                {
+                    System.out.printf("%2d|",(i+1));
+                }
+                System.out.print(gameBoard.getBoardComputer().getBoardPlayer()[j][i]+"|");
+
+
+            }
+            System.out.println();
+        }
+
+        System.out.printf("%2d",5);
+    }
+
+
 
 
 
@@ -77,38 +119,33 @@ Random random = new Random();
 int x=-1;
 int y=-1;
 while (!game.isWin())
-{x=random.nextInt(10);
-y=random.nextInt(10);
-    System.out.println("P: "+game.playerShips);
-    System.out.println("C: "+game.computerShips);
-    System.out.println("*********COMPUTER**********");
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
-            System.out.print(game.gameBoard.getBoardComputer().getBoardPlayer()[j][i]);
+{x=-1;
+    y=-1;
 
 
-        }
-        System.out.println();
-    }
 
-    System.out.println("*********USER BOARD*************");
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
-            System.out.print(game.gameBoard.getBoardPlayer().getBoardPlayer()[j][i]);
+    game.printBoardUser();
 
+    game.printBoartComputer();
 
-        }
-        System.out.println();
-    }
     if(game.currentPlayer.equals("computer"))
-    {game.shot(x,y,game.gameBoard.boardPlayer.boardPlayer);}
-    else{
-        System.out.println("podaj wspoldzedna x");
-        x=scanner.nextInt();
-        System.out.println("podaj wspoldzedna y");
-        y=scanner.nextInt();
+    {    x=random.nextInt(10);
+        y=random.nextInt(10);
 
-            game.shot(x,y,game.gameBoard.boardComputer.boardPlayer);}
+        game.shot(x,y,game.gameBoard.boardPlayer.boardPlayer);
+
+   }
+    else{
+     while(x<0||x>=10)
+        { System.out.println("podaj wspoldzedna x");
+        x=scanner.nextInt()-1;}
+        while(y<0||y>=10)
+        { System.out.println("podaj wspoldzedna y");
+        y=scanner.nextInt()-1;}
+        System.out.println(x);
+        System.out.println(y);
+            game.shot(x,y,game.gameBoard.boardComputer.boardPlayer);
+      }
 
 
 
