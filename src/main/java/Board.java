@@ -10,6 +10,9 @@ public class Board {
     char[][] boardPlayer = new char[10][10];
     List<Integer> playerShips = new ArrayList<>();
 
+    public void setPlayerShips(List<Integer> playerShips) {
+        this.playerShips = playerShips;
+    }
 
     public List<Integer> getPlayerShips() {
         return playerShips;
@@ -39,7 +42,7 @@ public class Board {
 
     }
 
-    public void addShip(int positionX, int positionY, int sizeOfShip, String direction) {
+    public boolean addShip(int positionX, int positionY, int sizeOfShip, String direction) {
 
         {
             if (isShipExists(sizeOfShip) && isEnoughSpaceForShip(direction, positionX, positionY, sizeOfShip)&&
@@ -53,6 +56,7 @@ public class Board {
                     }
 
                     playerShips.set(sizeOfShip - 1, playerShips.get(sizeOfShip - 1) - 1);
+                    return true;
                 }
 
                 if (direction.equals("vertical")) {
@@ -63,12 +67,13 @@ public class Board {
                     }
 
                     playerShips.set(sizeOfShip - 1, playerShips.get(sizeOfShip - 1) - 1);
+                    return true;
                 }
             }
 
 
         }
-
+return false;
 
     }
 

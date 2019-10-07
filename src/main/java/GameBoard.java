@@ -1,5 +1,7 @@
 import org.w3c.dom.ls.LSOutput;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -7,6 +9,8 @@ public class GameBoard {
 
     Board boardPlayer = new Board();
     Board boardComputer = new Board();
+    Map<Integer, Integer[][]> mapOfComputerShip = new HashMap<>();
+    Map<Integer, Integer[][]> mapOfUserShip = new HashMap<>();
 
 
     public Board getBoardPlayer() {
@@ -38,12 +42,15 @@ public class GameBoard {
 
                 boardComputer.addShip(x, y, i + 1, direction);
 
+
                 x = random.nextInt(10);
                 y = random.nextInt(10);
                  direction=determineDirectionOfShips(random.nextInt(2));
 
             }
         }
+
+
 
 
     }
