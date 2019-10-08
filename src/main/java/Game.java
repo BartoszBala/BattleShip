@@ -1,6 +1,4 @@
-import java.util.Arrays;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Game {
 
@@ -9,6 +7,7 @@ public class Game {
     int playerShips = 20;
     int computerShips = 20;
     Board boardComputerWhichSeeUser = new Board();
+    List<List<Integer>> listofShot = new ArrayList<>();
 
 
     public void createGame() {
@@ -17,8 +16,17 @@ public class Game {
 
     }
 
+    public List<List<Integer>> getListofShot() {
+        return listofShot;
+    }
 
     public char shot(int x, int y, char[][] board) {
+        List<Integer> lista = new ArrayList<>();
+        if(currentPlayer.equals("computer"))
+        {
+       lista.add(x+1);
+       lista.add(y+1);
+       listofShot.add(lista);}
         char xchar = ' ';
         if (board[x][y] == 'o') {
             board[x][y] = 'x';
@@ -32,9 +40,12 @@ public class Game {
             }
 
         } else {
-            if (board[x][y] == ' ' || board[x][y] == '*') {
+            if (board[x][y] == ' ' || board[x][y] == '*'||board[x][y]=='x') {
+                if(board[x][y]=='x')
+                {xchar='*';}
+                else{
                 board[x][y] = '*';
-                xchar = '*';
+                xchar = '*';}
             }
             if (currentPlayer.equals("computer"))
                 currentPlayer = "user";
@@ -174,20 +185,33 @@ public class Game {
 
     }
 
+    public boolean isEmptyPole(char[][] board, int xPosition, int yPosition)
 
-    public void smartShot(char[][] userBoard, int xPosition, int yPosition) {
+    {
+     if(board[xPosition][yPosition]==' '||board[xPosition][yPosition]=='o')
+         return true;
 
-        if (userBoard[xPosition + 1][yPosition] == ' ') {
-            shot(xPosition + 1, yPosition, userBoard);
-        } else if (userBoard[xPosition][yPosition + 1] == ' ') {
-            shot(xPosition, yPosition + 1, userBoard);
-        } else if (userBoard[xPosition - 1][yPosition] == ' ') {
-            shot(xPosition - 1, yPosition, userBoard);
-        } else if (userBoard[xPosition][yPosition - 1] == ' ') {
-            shot(xPosition, yPosition - 1, userBoard);
+     return false;
+
+
+
+    }
+
+
+    public char smartShot(char[][] userBoard, int xPosition, int yPosition) {
+char shot=' ';
+        if (xPosition+1!=10&&userBoard[xPosition + 1][yPosition] == ' ') {
+            shot=shot(xPosition + 1, yPosition, userBoard);
+
+        } else if (yPosition+1!=10&&userBoard[xPosition][yPosition + 1] == ' ') {
+            shot=shot(xPosition, yPosition + 1, userBoard);
+        } else if (xPosition-1!=-1&&userBoard[xPosition - 1][yPosition] == ' ') {
+            shot=shot(xPosition - 1, yPosition, userBoard);
+        } else if (yPosition-1!=-1&&userBoard[xPosition][yPosition - 1] == ' ') {
+            shot=shot(xPosition, yPosition - 1, userBoard);
         }
 
-
+return shot;
     }
 
 
@@ -317,27 +341,30 @@ public class Game {
 
 
             if (game.currentPlayer.equals("computer")) {
-
+do
+    {
                 x = random.nextInt(10);
                 y = random.nextInt(10);
+    }
+
+while((!game.isEmptyPole(game.gameBoard.boardPlayer.boardPlayer,x,y)));
+                System.out.println(game.gameBoard.boardPlayer.getBoardPlayer()[x][y]);
+                shot = game.shot(x, y, game.gameBoard.boardPlayer.boardPlayer);
 
 
                 while (shot == 'x') {
                     if (game.isSunk(x, y, game.gameBoard.boardPlayer.boardPlayer)) {
                         game.ifShipIsSunkMarkPoleWhereThereAreNotOtherShip(game.gameBoard.boardPlayer.boardPlayer, game.returnPositionOfSunkShip(game.gameBoard.boardPlayer.boardPlayer, x, y));
 
-
+shot=' ';
                     } else {
 
-                        game.smartShot(game.gameBoard.boardPlayer.boardPlayer, x, y);
+                        shot = game.smartShot(game.gameBoard.boardPlayer.boardPlayer, x, y);
 
                     }
                 }
 
                 game.printBoardUser();
-                // game.printBoardComputer();
-
-                // game.printComputerBoardWhichSeeUser(x,y,shot);
 
 
             } else {
@@ -361,7 +388,7 @@ public class Game {
                 }
 
                 game.printComputerBoardWhichSeeUser(x, y, shot);
-                game.printBoardComputer();
+
             }
 
 
