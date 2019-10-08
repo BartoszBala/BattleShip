@@ -8,13 +8,40 @@ public class Game {
     int computerShips = 20;
     Board boardComputerWhichSeeUser = new Board();
     List<List<Integer>> listofShot = new ArrayList<>();
+    char[][] computerBoardwhichSeeUser=new char[10][10];
 
+    public Board getBoardComputerWhichSeeUser() {
+        return boardComputerWhichSeeUser;
+    }
 
     public void createGame() {
         gameBoard.createComputerBoard();
         gameBoard.createUserBoard();
 
     }
+
+    public void initComputerBoardwhichSeeUSer()
+    {for(int i=0;i<10;i++)
+
+    {
+        for (int j=0;j<10;j++)
+
+        {
+
+            computerBoardwhichSeeUser[i][j]=' ';
+
+        }
+
+
+
+
+
+    }
+
+
+    }
+
+
 
     public List<List<Integer>> getListofShot() {
         return listofShot;
@@ -279,47 +306,51 @@ return shot;
         }
     }
 
-    public void printBoardComputer() {
+    public void printBoardComputerwhichSeeUser() {
 
-        System.out.println("*********COMPUTER**********");
+        System.out.println("*********COMPUTER BOARD*************");
         System.out.println("   1 2 3 4 5 6 7 8 9 10");
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if (j == 0) {
                     System.out.printf("%2d|", (i + 1));
                 }
-                System.out.print(gameBoard.getBoardComputer().getBoardPlayer()[j][i] + "|");
+                System.out.print(computerBoardwhichSeeUser[j][i] + "|");
 
 
             }
             System.out.println();
         }
-
-
     }
 
-    public void printComputerBoardWhichSeeUser(int xPosition, int yPosition, char x) {
+//    private void printBoardComputer() {
+//
+//        System.out.println("*********COMPUTER**********");
+//        System.out.println("   1 2 3 4 5 6 7 8 9 10");
+//        for (int i = 0; i < 10; i++) {
+//            for (int j = 0; j < 10; j++) {
+//                if (j == 0) {
+//                    System.out.printf("%2d|", (i + 1));
+//                }
+//                System.out.print(gameBoard.getBoardComputer().getBoardPlayer()[j][i] + "|");
+//
+//
+//            }
+//            System.out.println();
+//        }
+
+
+//    }
+
+    public void setComputerBoardWhichSeeUser(int xPosition, int yPosition, char x) {
 
 
         if (x != ' ') {
-            boardComputerWhichSeeUser.getBoardPlayer()[xPosition][yPosition] = x;
+            computerBoardwhichSeeUser[xPosition][yPosition] = x;
 
         }
 
 
-        System.out.println("*********COMPUTER**********");
-        System.out.println("   1 2 3 4 5 6 7 8 9 10");
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                if (j == 0) {
-                    System.out.printf("%2d|", (i + 1));
-                }
-                System.out.print(boardComputerWhichSeeUser.getBoardPlayer()[j][i] + "|");
-
-
-            }
-            System.out.println();
-        }
 
 
     }
@@ -335,6 +366,9 @@ return shot;
         int y = -1;
         char shot = ' ';
         game.boardComputerWhichSeeUser.boardInit();
+        game.initComputerBoardwhichSeeUSer();
+        game.printBoardComputerwhichSeeUser();
+
         while (!game.isWin()) {
             x = -1;
             y = -1;
@@ -348,7 +382,6 @@ do
     }
 
 while((!game.isEmptyPole(game.gameBoard.boardPlayer.boardPlayer,x,y)));
-                System.out.println(game.gameBoard.boardPlayer.getBoardPlayer()[x][y]);
                 shot = game.shot(x, y, game.gameBoard.boardPlayer.boardPlayer);
 
 
@@ -387,7 +420,7 @@ shot=' ';
                     }
                 }
 
-                game.printComputerBoardWhichSeeUser(x, y, shot);
+                game.setComputerBoardWhichSeeUser(x, y, shot);
 
             }
 
