@@ -10,6 +10,9 @@ public class Game {
     List<List<Integer>> listofShot = new ArrayList<>();
     char[][] computerBoardwhichSeeUser=new char[10][10];
 
+    int counterOfPlayershots=0;
+    int counterOfComputershots=0;
+
     public Board getBoardComputerWhichSeeUser() {
         return boardComputerWhichSeeUser;
     }
@@ -67,7 +70,7 @@ public class Game {
         } else {
             if (board[x][y] == ' ' || board[x][y] == '*'||board[x][y]=='x') {
                 if(board[x][y]=='x')
-                {xchar='*';}
+                {xchar='y';}
                 else{
                 board[x][y] = '*';
                 xchar = '*';}
@@ -320,30 +323,33 @@ return shot;
         }
     }
 
-//    private void printBoardComputer() {
-//
-//        System.out.println("*********COMPUTER**********");
-//        System.out.println("   1 2 3 4 5 6 7 8 9 10");
-//        for (int i = 0; i < 10; i++) {
-//            for (int j = 0; j < 10; j++) {
-//                if (j == 0) {
-//                    System.out.printf("%2d|", (i + 1));
-//                }
-//                System.out.print(gameBoard.getBoardComputer().getBoardPlayer()[j][i] + "|");
-//
-//
-//            }
-//            System.out.println();
-//        }
+    private void printBoardComputer() {
+
+        System.out.println("*********COMPUTER**********");
+        System.out.println("   1 2 3 4 5 6 7 8 9 10");
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (j == 0) {
+                    System.out.printf("%2d|", (i + 1));
+                }
+                System.out.print(gameBoard.getBoardComputer().getBoardPlayer()[j][i] + "|");
 
 
-//    }
+            }
+            System.out.println();
+        }
+
+
+    }
 
     public void setComputerBoardWhichSeeUser(int xPosition, int yPosition, char x) {
 
 
         if (x != ' ') {
-            computerBoardwhichSeeUser[xPosition][yPosition] = x;
+            if(x=='y')
+            {computerBoardwhichSeeUser[xPosition][yPosition] = 'x';}
+            else{
+            computerBoardwhichSeeUser[xPosition][yPosition] = x;}
 
         }
 
@@ -366,6 +372,8 @@ return shot;
         game.initComputerBoardwhichSeeUSer();
         game.printBoardComputerwhichSeeUser();
         game.printBoardUser();
+        game.printBoardComputer();
+
 
         while (!game.isWin()) {
             x = -1;
@@ -381,17 +389,25 @@ do
 
 while((!game.isEmptyPole(game.gameBoard.boardPlayer.boardPlayer,x,y)));
                 shot = game.shot(x, y, game.gameBoard.boardPlayer.boardPlayer);
-
+game.counterOfComputershots++;
 
                 while (shot == 'x') {
                     if (game.isSunk(x, y, game.gameBoard.boardPlayer.boardPlayer)) {
                         game.ifShipIsSunkMarkPoleWhereThereAreNotOtherShip(game.gameBoard.boardPlayer.boardPlayer, game.returnPositionOfSunkShip(game.gameBoard.boardPlayer.boardPlayer, x, y));
 
-shot=' ';
+                        do
+                        {
+                            x = random.nextInt(10);
+                            y = random.nextInt(10);
+                        }
+
+                        while((!game.isEmptyPole(game.gameBoard.boardPlayer.boardPlayer,x,y)));
+                        shot = game.shot(x, y, game.gameBoard.boardPlayer.boardPlayer);
+                        game.counterOfComputershots++;
                     } else {
 
                         shot = game.smartShot(game.gameBoard.boardPlayer.boardPlayer, x, y);
-
+                        game.counterOfComputershots++;
                     }
                 }
 
@@ -409,10 +425,10 @@ shot=' ';
                 }
 
                 shot = game.shot(x, y, game.gameBoard.boardComputer.boardPlayer);
+                game.counterOfPlayershots++;
 
                 if (shot == 'x') {
                     if (game.isSunk(x, y, game.gameBoard.boardComputer.boardPlayer)) {
-                       // game.ifShipIsSunkMarkPoleWhereThereAreNotOtherShip(game.gameBoard.boardComputer.boardPlayer, game.returnPositionOfSunkShip(game.gameBoard.boardComputer.boardPlayer, x, y));
                         game.ifShipIsSunkMarkPoleWhereThereAreNotOtherShip(game.computerBoardwhichSeeUser, game.returnPositionOfSunkShip(game.gameBoard.boardComputer.boardPlayer, x, y));
 
                     }
@@ -421,6 +437,8 @@ shot=' ';
                 game.setComputerBoardWhichSeeUser(x, y, shot);
                 game.printBoardComputerwhichSeeUser();
                 game.printBoardUser();
+                System.out.println("CPU: "+game.counterOfComputershots);
+                System.out.println("PLAYER: "+game.counterOfPlayershots);
 
             }
 
