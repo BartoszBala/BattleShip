@@ -32,7 +32,7 @@ public class Game {
             }
 
         } else {
-            if (board[x][y] == ' ') {
+            if (board[x][y] == ' '||board[x][y]=='*') {
                 board[x][y] = '*';
                 xchar = '*';
             }
@@ -270,6 +270,8 @@ public class Game {
                 boardComputerWhichSeeUser.getBoardPlayer()[xPosition][yPosition] = x;
             }
 
+            
+
             System.out.println("*********COMPUTER**********");
             System.out.println("   1 2 3 4 5 6 7 8 9 10");
             for (int i = 0; i < 10; i++) {
@@ -311,31 +313,30 @@ public class Game {
                     smartComputer.updateBoardAfterShot(x, y, shot);
 
                     game.printBoardUser();
+                   // game.printBoardComputer();
 
-                    //game.printComputerBoardWhichSeeUser(x,y,char x);
+                   // game.printComputerBoardWhichSeeUser(x,y,shot);
 
                 } else {
                     while (x < 0 || x >= 10) {
-                        System.out.println("podaj wspoldzedna x");
+                        System.out.println("podaj wspolrzedna x");
                         x = scanner.nextInt() - 1;
                     }
                     while (y < 0 || y >= 10) {
-                        System.out.println("podaj wspoldzedna y");
+                        System.out.println("podaj wspolrzedna y");
                         y = scanner.nextInt() - 1;
                     }
-                    System.out.println(x);
-                    System.out.println(y);
+
                     shot = game.shot(x, y, game.gameBoard.boardComputer.boardPlayer);
-                    game.printBoardUser();
+
                     if (shot == 'x') {
                         if (game.isSunk(x, y, game.gameBoard.boardComputer.boardPlayer)) {
-                            System.out.println(Arrays.toString(game.returnPositionOfSunkShip(game.gameBoard.boardComputer.boardPlayer,x,y)));
                             game.ifShipIsSunkMarkPoleWhereThereAreNotOtherShip(game.gameBoard.boardComputer.boardPlayer, game.returnPositionOfSunkShip(game.gameBoard.boardComputer.boardPlayer, x, y));
                         }
                     }
 
                     game.printComputerBoardWhichSeeUser(x, y, shot);
-                    game.printBoardComputer();
+                  game.printBoardComputer();
                 }
 
 
