@@ -152,7 +152,6 @@ public class Game {
             isSunk = false;
 
 
-        System.out.println("TRAFIONY ZATOPIONY");
         return isSunk;
     }
 
@@ -368,6 +367,7 @@ return shot;
         game.boardComputerWhichSeeUser.boardInit();
         game.initComputerBoardwhichSeeUSer();
         game.printBoardComputerwhichSeeUser();
+        game.printBoardUser();
 
         while (!game.isWin()) {
             x = -1;
@@ -397,7 +397,7 @@ shot=' ';
                     }
                 }
 
-                game.printBoardUser();
+
 
 
             } else {
@@ -414,18 +414,22 @@ shot=' ';
 
                 if (shot == 'x') {
                     if (game.isSunk(x, y, game.gameBoard.boardComputer.boardPlayer)) {
-                        game.ifShipIsSunkMarkPoleWhereThereAreNotOtherShip(game.gameBoard.boardComputer.boardPlayer, game.returnPositionOfSunkShip(game.gameBoard.boardComputer.boardPlayer, x, y));
-                        game.ifShipIsSunkMarkPoleWhereThereAreNotOtherShip(game.boardComputerWhichSeeUser.boardPlayer, game.returnPositionOfSunkShip(game.gameBoard.boardComputer.boardPlayer, x, y));
+                       // game.ifShipIsSunkMarkPoleWhereThereAreNotOtherShip(game.gameBoard.boardComputer.boardPlayer, game.returnPositionOfSunkShip(game.gameBoard.boardComputer.boardPlayer, x, y));
+                        game.ifShipIsSunkMarkPoleWhereThereAreNotOtherShip(game.computerBoardwhichSeeUser, game.returnPositionOfSunkShip(game.gameBoard.boardComputer.boardPlayer, x, y));
 
                     }
                 }
 
                 game.setComputerBoardWhichSeeUser(x, y, shot);
+                game.printBoardComputerwhichSeeUser();
+                game.printBoardUser();
 
             }
 
 
         }
+
+        System.out.println(game.currentPlayer.equals("computer")?"SORRY BUT COMPUTER WON":"YOU WIN");
 
 
     }
