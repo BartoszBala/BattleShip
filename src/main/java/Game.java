@@ -48,13 +48,11 @@ public class Game {
     }
 
     public char shot(int x, int y, char[][] board) {
-        List<Integer> lista = new ArrayList<>();
-        if(currentPlayer.equals("computer"))
-        {
-       lista.add(x+1);
-       lista.add(y+1);
-       listofShot.add(lista);}
+
+
         char xchar = ' ';
+
+
         if (board[x][y] == 'o') {
             board[x][y] = 'x';
             xchar = 'x';
