@@ -362,7 +362,7 @@ public class Game {
         game.initComputerBoardwhichSeeUSer();
         game.printBoardComputerwhichSeeUser();
         game.printBoardUser();
-        game.printBoardComputer();
+
 
 
         while (isWin) {
@@ -422,13 +422,15 @@ public class Game {
             } else {
 
                 while (x < 0 || x >= 10) {
-                    System.out.println("podaj wspolrzedna x");
-                    x = scanner.nextInt() - 1;
-                }
-                while (y < 0 || y >= 10) {
-                    System.out.println("podaj wspolrzedna y");
-                    y = scanner.nextInt() - 1;
-                }
+                  System.out.println("podaj wspolrzedna x");
+                 x = scanner.nextInt() - 1;
+              }
+               while (y < 0 || y >= 10) {
+                   System.out.println("podaj wspolrzedna y");
+                  y = scanner.nextInt() - 1;
+              }
+
+
 
                 shot = game.shot(x, y, game.gameBoard.boardComputer.boardPlayer);
                 if(game.isWin())
@@ -449,6 +451,7 @@ public class Game {
                     game.printBoardUser();
                     x=-1;
                     y=-1;
+
 
                     while (x < 0 || x >= 10) {
                         System.out.println("podaj wspolrzedna x");
@@ -474,8 +477,7 @@ public class Game {
                 game.setComputerBoardWhichSeeUser(x, y, shot);
                 game.printBoardComputerwhichSeeUser();
                 game.printBoardUser();
-                System.out.println("CPU: " + game.counterOfComputershots);
-                System.out.println("PLAYER: " + game.counterOfPlayershots);
+
             }
 
 
