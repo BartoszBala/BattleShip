@@ -167,40 +167,4 @@ return 0;
     }
 
 
-    public static void main(String[] args) {
-
-        Board board = new Board();
-        board.boardInit();
-
-        System.out.println(board.getBoardPlayer()[9][9]);
-        System.out.println(board.getPlayerShips().get(0));
-
-        System.out.println(board.getPlayerShips().get(0));
-
-        System.out.println(board.getPlayerShips().get(0));
-
-
-        board.addShip(0, 7, 3, "vertical");
-
-//        board.addShip(5,5,1,"horizontal");
-
-        //   board.addShip(0,0,1,"vertical");
-//        System.out.println(board.getPlayerShips().get(0));
-//        System.out.println(board.getBoardPlayer()[3][3]);
-//
-//        System.out.println(board.getBoardPlayer()[4][4]);
-//
-//        System.out.println(board.getBoardPlayer()[8][8]);
-
-
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                System.out.print(board.getBoardPlayer()[j][i]);
-
-            }
-            System.out.println();
-        }
-    }
-
-
 }
