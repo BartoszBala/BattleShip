@@ -71,7 +71,7 @@ public class GameBoard {
  }
 
 
-    private String determineDirectionOfShips(int direction0) {
+    public String determineDirectionOfShips(int direction0) {
 
         switch (direction0) {
             case 0:
