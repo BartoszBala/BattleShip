@@ -19,7 +19,11 @@ public class GameBoard {
         return boardComputer;
     }
 
-    public void createComputerBoard()  {
+    public void setBoardComputer(Board boardComputer) {
+        this.boardComputer = boardComputer;
+    }
+
+    public Board  createComputerBoard(Board boardComputer)  {
         int x;
         int y;
         int direction0 = 0;
@@ -49,7 +53,7 @@ public class GameBoard {
         }
 
 
-
+return this.boardComputer=boardComputer;
 
     }
 

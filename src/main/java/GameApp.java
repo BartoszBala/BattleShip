@@ -13,11 +13,9 @@ public class GameApp {
         int y = -1;
         char shot = ' ';
         boolean isWin =true;
-        game.boardComputerWhichSeeUser.boardInit();
         game.initComputerBoardwhichSeeUSer();
         game.printBoardComputerwhichSeeUser();
         game.printBoardUser();
-
 
 
         while (isWin) {
@@ -71,8 +69,6 @@ public class GameApp {
                         game.counterOfComputershots++;
                     }
                 }
-
-
 
             } else {
 
@@ -135,12 +131,7 @@ public class GameApp {
 
             }
 
-
-
         }
-
-
-
 
         System.out.println(game.currentPlayer.equals("computer")?"SORRY BUT COMPUTER WON":"YOU WIN");
 

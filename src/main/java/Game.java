@@ -6,19 +6,16 @@ public class Game {
     String currentPlayer = "computer";
     int playerShips = 20;
     int computerShips = 20;
-    Board boardComputerWhichSeeUser = new Board();
-    List<List<Integer>> listofShot = new ArrayList<>();
     char[][] computerBoardwhichSeeUser = new char[10][10];
 
     int counterOfPlayershots = 0;
     int counterOfComputershots = 0;
 
-    public Board getBoardComputerWhichSeeUser() {
-        return boardComputerWhichSeeUser;
-    }
+
 
     public void createGame() {
-        gameBoard.createComputerBoard();
+        Board boardcomputer = new Board();
+        gameBoard.createComputerBoard(boardcomputer);
         gameBoard.createUserBoard();
 
     }
@@ -38,9 +35,6 @@ public class Game {
     }
 
 
-    public List<List<Integer>> getListofShot() {
-        return listofShot;
-    }
 
     public char shot(int x, int y, char[][] board) {
 

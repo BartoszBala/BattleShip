@@ -18,12 +18,15 @@ public class GameBoardTest {
 
     {
         //given
-        int direction =0;
+        int direction1 =0;
+        int direction2 =1;
         //when
-        String direction1 = gameBoard.determineDirectionOfShips(direction);
+        String direction1String = gameBoard.determineDirectionOfShips(direction1);
+        String direction2String = gameBoard.determineDirectionOfShips(direction2);
         //then
 
-        Assert.assertEquals("horizontal",direction1);
+        Assert.assertEquals("horizontal",direction1String);
+        Assert.assertEquals("vertical",direction2String);
 
     }
 
@@ -31,8 +34,8 @@ public class GameBoardTest {
     @Test
     public void shouldCreateBoardComputerWhichHave20PolesBusy()
     {//given
-
-        gameBoard.createComputerBoard();
+Board board = new Board();
+        gameBoard.createComputerBoard(board);
 
 
 //when

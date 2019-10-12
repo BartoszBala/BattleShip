@@ -6,7 +6,7 @@ import java.util.List;
 public class Board {
 
 
-    char[][] boardUser = new char[10][10];
+
     char[][] boardPlayer = new char[10][10];
     List<Integer> playerShips = new ArrayList<>();
 
@@ -18,9 +18,6 @@ public class Board {
         return playerShips;
     }
 
-    public char[][] getBoardUser() {
-        return boardUser;
-    }
 
     public char[][] getBoardPlayer() {
         return boardPlayer;
@@ -29,7 +26,7 @@ public class Board {
     public void boardInit() {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                boardUser[i][j] = ' ';
+
                 boardPlayer[i][j] = ' ';
 
             }
